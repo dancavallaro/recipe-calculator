@@ -78,8 +78,8 @@ Alpine.data("app", (): AppState => ({
     }
   },
 
-  formatAmount(q: Quantity) {
-    return formatQuantity(q);
+  formatAmount(q: Quantity, isLiquid?: boolean) {
+    return formatQuantity(q, { isLiquid });
   },
 
   isCuringResult() {

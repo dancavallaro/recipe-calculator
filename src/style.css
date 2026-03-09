@@ -26,6 +26,18 @@ h1 {
 }
 
 /* Recipe list */
+.section-heading {
+  font-size: 0.85rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 16px 0 8px;
+}
+
+.section-heading:first-of-type {
+  margin-top: 0;
+}
+
 .recipe-card {
   background: #fff;
   border-radius: 10px;
@@ -46,24 +58,6 @@ h1 {
 .recipe-card .name {
   font-weight: 500;
   font-size: 1.05rem;
-}
-
-.badge {
-  font-size: 0.75rem;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.badge.curing {
-  background: #e8d5c4;
-  color: #6b4226;
-}
-
-.badge.superjuice {
-  background: #d4edda;
-  color: #2d6a3f;
 }
 
 /* Back button */

@@ -13,13 +13,18 @@
       <template x-if="!selected">
         <div>
           <h1>Recipes</h1>
-          <template x-for="recipe in recipes" :key="recipe.id">
+
+          <h2 class="section-heading">Curing</h2>
+          <template x-for="recipe in recipes.filter(r => r.type === 'CuredMeat')" :key="recipe.id">
             <div class="recipe-card" @click="selectRecipe(recipe)">
               <span class="name" x-text="recipe.name"></span>
-              <span class="badge"
-                :class="recipe.type === 'CuredMeat' ? 'curing' : 'superjuice'"
-                x-text="recipe.type === 'CuredMeat' ? 'Curing' : 'Superjuice'">
-              </span>
+            </div>
+          </template>
+
+          <h2 class="section-heading">Superjuice</h2>
+          <template x-for="recipe in recipes.filter(r => r.type === 'Superjuice')" :key="recipe.id">
+            <div class="recipe-card" @click="selectRecipe(recipe)">
+              <span class="name" x-text="recipe.name"></span>
             </div>
           </template>
         </div>
@@ -70,7 +75,7 @@
 
                 <div class="ingredient-row">
                   <span class="name" x-text="selected.type === 'CuredMeat' ? selected.water.name : selected.waterName"></span>
-                  <span class="amount" x-text="formatAmount(result.water)"></span>
+                  <span class="amount" x-text="formatAmount(result.water, true)"></span>
                 </div>
 
                 <template x-if="isCuringResult()">
