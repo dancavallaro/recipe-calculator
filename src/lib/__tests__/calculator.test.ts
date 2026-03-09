@@ -63,7 +63,7 @@ const curingTests: CuringTestCase[] = [
     expectedPraguePowder: Quantity.of(4.1, "g"),
     expectedIngredients: [
       { name: "Kosher salt", amount: Quantity.of(6, "tsp") },
-      { name: "Dark brown sugar", amount: Quantity.of(8, "Tbs") },
+      { name: "Dark brown sugar", amount: Quantity.of(8, "Tbsp") },
       { name: "Ground black pepper", amount: Quantity.of(6, "tsp") },
     ],
   },
@@ -160,7 +160,7 @@ describe("water override affects Prague Powder", () => {
 
 describe("ratio: lime superjuice", () => {
   it("scales ingredients by peel weight", () => {
-    const recipe = loadRecipe("lime_superjuice");
+    const recipe = loadRecipe("lime");
     if (recipe.type !== "Superjuice") throw new Error("Expected Superjuice");
 
     const result = scaleRatioRecipe(recipe, 15); // 15g peels

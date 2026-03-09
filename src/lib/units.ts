@@ -1,4 +1,4 @@
-export type Unit = "g" | "kg" | "lb" | "oz" | "tsp" | "Tbs" | "cup" | "gal" | "l" | "ml" | "in" | "cm";
+export type Unit = "g" | "kg" | "lb" | "oz" | "tsp" | "Tbsp" | "cup" | "gal" | "l" | "ml" | "in" | "cm";
 
 type UnitCategory = "mass" | "volume" | "length";
 
@@ -18,7 +18,7 @@ const unitDefs: Record<Unit, UnitDef> = {
   // Volume (base: ml)
   ml:  { category: "volume", baseUnit: "ml", toBase: 1 },
   tsp: { category: "volume", baseUnit: "ml", toBase: 4.92892 },
-  Tbs: { category: "volume", baseUnit: "ml", toBase: 14.7868 },
+  Tbsp: { category: "volume", baseUnit: "ml", toBase: 14.7868 },
   cup: { category: "volume", baseUnit: "ml", toBase: 236.588 },
   l:   { category: "volume", baseUnit: "ml", toBase: 1000 },
   gal: { category: "volume", baseUnit: "ml", toBase: 3785.41 },

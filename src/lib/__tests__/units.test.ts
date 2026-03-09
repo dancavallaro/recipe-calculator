@@ -11,7 +11,7 @@ describe("convert", () => {
   it("converts between volume units", () => {
     expect(convert(1, "gal", "cup")).toBeCloseTo(16, 1);
     expect(convert(1, "gal", "l")).toBeCloseTo(3.78541, 3);
-    expect(convert(1, "Tbs", "tsp")).toBeCloseTo(3, 1);
+    expect(convert(1, "Tbsp", "tsp")).toBeCloseTo(3, 1);
     expect(convert(1, "cup", "ml")).toBeCloseTo(236.588, 1);
   });
 
