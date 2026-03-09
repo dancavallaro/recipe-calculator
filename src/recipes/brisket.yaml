@@ -1,0 +1,12 @@
+name: Corned Beef Brisket
+type: CuredMeat
+water:
+  name: Distilled water
+  amount: "1 gal"
+meat:
+  name: Beef brisket
+  shape: Flat
+  amount: "4 lb"
+ingredients:
+  - name: Kosher salt
+    amount: "1 cup"

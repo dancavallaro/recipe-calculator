@@ -1,0 +1,12 @@
+name: Cured Ham
+type: CuredMeat
+water:
+  name: Distilled water
+  amount: "3 gal"
+meat:
+  name: Whole fresh ham
+  shape: Cylinder
+  amount: "20 lb"
+ingredients:
+  - name: Kosher salt
+    amount: "2.5 cup"

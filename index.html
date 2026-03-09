@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Recipe Calculator</title>
+  </head>
+  <body>
+    <div class="container" x-data="app">
+
+      <!-- Recipe List -->
+      <template x-if="!selected">
+        <div>
+          <h1>Recipes</h1>
+          <template x-for="recipe in recipes" :key="recipe.id">
+            <div class="recipe-card" @click="selectRecipe(recipe)">
+              <span class="name" x-text="recipe.name"></span>
+              <span class="badge"
+                :class="recipe.type === 'CuredMeat' ? 'curing' : 'superjuice'"
+                x-text="recipe.type === 'CuredMeat' ? 'Curing' : 'Superjuice'">
+              </span>
+            </div>
+          </template>
+        </div>
+      </template>
+
+      <!-- Recipe Detail -->
+      <template x-if="selected">
+        <div>
+          <button class="back-btn" @click="back">&larr; Recipes</button>
+          <div class="recipe-title" x-text="selected.name"></div>
+
+          <!-- Inputs -->
+          <div class="section">
+            <div class="input-group">
+              <label x-text="selected.type === 'Superjuice' ? 'Peel weight' : 'Meat weight'"></label>
+              <div class="input-row">
+                <input type="number" inputmode="decimal" step="any" min="0"
+                  x-model="weightValue" @input="calculate()" placeholder="0">
+                <select x-model="weightUnit" @change="calculate()">
+                  <option x-show="selected.type === 'Superjuice'" value="g">g</option>
+                  <option x-show="selected.type === 'Superjuice'" value="oz">oz</option>
+                  <option x-show="selected.type === 'CuredMeat'" value="lb">lb</option>
+                  <option x-show="selected.type === 'CuredMeat'" value="kg">kg</option>
+                </select>
+              </div>
+            </div>
+
+            <template x-if="selected.type === 'CuredMeat'">
+              <div class="input-group">
+                <label>Thickness (thickest point)</label>
+                <div class="input-row">
+                  <input type="number" inputmode="decimal" step="any" min="0"
+                    x-model="thicknessValue" @input="calculate()" placeholder="0">
+                  <select x-model="thicknessUnit" @change="calculate()">
+                    <option value="in">in</option>
+                    <option value="cm">cm</option>
+                  </select>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <!-- Results -->
+          <template x-if="result">
+            <div class="results">
+              <div class="section">
+                <h3>Ingredients</h3>
+
+                <div class="ingredient-row">
+                  <span class="name" x-text="selected.type === 'CuredMeat' ? selected.water.name : selected.waterName"></span>
+                  <span class="amount" x-text="formatAmount(result.water)"></span>
+                </div>
+
+                <template x-if="isCuringResult()">
+                  <div class="ingredient-row">
+                    <span class="name">Prague Powder #1</span>
+                    <span class="amount" x-text="formatAmount(result.praguePowder)"></span>
+                  </div>
+                </template>
+
+                <template x-for="ing in result.ingredients" :key="ing.name">
+                  <div class="ingredient-row">
+                    <span class="name" x-text="ing.name"></span>
+                    <span class="amount" x-text="formatAmount(ing.amount)"></span>
+                  </div>
+                </template>
+              </div>
+
+              <template x-if="isCuringResult()">
+                <div class="cure-time">
+                  Cure time: <span x-text="result.cureTimeDays.toFixed(1)"></span> days
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+      </template>
+
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

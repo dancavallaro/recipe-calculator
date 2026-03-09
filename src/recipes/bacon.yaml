@@ -1,0 +1,16 @@
+name: Traditional American Bacon
+type: CuredMeat
+water:
+  name: Distilled water
+  amount: "0.046875 gal"
+meat:
+  name: Pork belly
+  shape: Flat
+  amount: "3 lb"
+ingredients:
+  - name: Kosher salt
+    amount: "4.5 tsp"
+  - name: Dark brown sugar
+    amount: "6 Tbs"
+  - name: Ground black pepper
+    amount: "4.5 tsp"

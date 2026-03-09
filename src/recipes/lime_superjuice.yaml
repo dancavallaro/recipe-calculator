@@ -1,0 +1,10 @@
+name: Lime Superjuice
+type: Superjuice
+water:
+  name: Water
+  ratio: 15
+ingredients:
+  - name: Citric acid
+    ratio: 0.75
+  - name: Malic acid
+    ratio: 0.15
