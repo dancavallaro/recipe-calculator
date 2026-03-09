@@ -1,0 +1,8 @@
+name: Lemon Superjuice
+type: Superjuice
+water:
+  name: Water
+  ratio: 16.66
+ingredients:
+  - name: Citric acid
+    ratio: 1
