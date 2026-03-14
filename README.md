@@ -65,12 +65,17 @@ ingredients:
 
 ## Deployment
 
-Build and push a Docker image, then apply the K8s manifests:
+Build and push a Docker image:
 
-```bash
-docker build -t cook-calc .
-# push to your registry, then:
-kubectl apply -f deploy/deployment.yaml
+### build
+
+```shell
+docker build --load --platform linux/amd64 -t recipe-calculator:latest .
 ```
 
-Update the hostname in `deploy/deployment.yaml` to match your domain.
+### push
+
+```shell
+docker tag recipe-calculator:latest "ghcr.io/dancavallaro/recipe-calculator/recipe-calculator:$(cat version)"
+docker push "ghcr.io/dancavallaro/recipe-calculator/recipe-calculator:$(cat version)"
+```

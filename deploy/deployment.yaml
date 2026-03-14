@@ -1,51 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cook-calc
+  name: recipe-calculator
   labels:
-    app: cook-calc
+    app: recipe-calculator
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: cook-calc
+      app: recipe-calculator
   template:
     metadata:
       labels:
-        app: cook-calc
+        app: recipe-calculator
     spec:
       containers:
-        - name: cook-calc
-          image: cook-calc:latest
+        - name: recipe-calculator
+          image: ghcr.io/dancavallaro/recipe-calculator/recipe-calculator:0.1.0
           ports:
             - containerPort: 80
-          resources:
-            requests:
-              memory: "32Mi"
-              cpu: "10m"
-            limits:
-              memory: "64Mi"
-              cpu: "50m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cook-calc
+  name: recipe-calculator
 spec:
   selector:
-    app: cook-calc
+    app: recipe-calculator
   ports:
     - port: 80
-      targetPort: 80
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: cook-calc
+  name: recipe-calculator
 spec:
+  parentRefs:
+    - name: private-gateway
+      namespace: default
+      sectionName: websecure
   hostnames:
-    - cook-calc.example.com
+    - recipes.o.cavnet.cloud
   rules:
-    - backendRefs:
-        - name: cook-calc
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: recipe-calculator
           port: 80

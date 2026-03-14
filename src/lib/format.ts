@@ -29,7 +29,7 @@ export function formatQuantity(q: Quantity, options?: { isLiquid?: boolean; digi
   }
 
   // Large volume amounts in smaller units: show cups in parentheses
-  if ((q.units === "Tbsp" || q.units === "tsp" || q.units === "ml") && q.units !== "cup") {
+  if (q.units === "Tbsp" || q.units === "tsp" || q.units === "ml") {
     const cups = convert(q.amount, q.units, "cup");
     if (cups >= 0.2) {
       return `${base} (${Number(cups.toFixed(2))} cup)`;
